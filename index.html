@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>College Clubs — Attendance Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- SheetJS (xlsx) to parse and export Excel/CSV -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Attendance Manager — ISTE ALCHEMY / IEDC CEAL / FOSS CEAL / IEEE SB CEAL</h1>
+  </header>
+
+  <main>
+    <section class="event-creation card">
+      <h2>Create / Select Event</h2>
+      <div class="row">
+        <label>Organizing Club
+          <select id="clubSelect">
+            <option>ISTE ALCHEMY</option>
+            <option>IEDC CEAL</option>
+            <option>FOSS CEAL</option>
+            <option>IEEE SB CEAL</option>
+          </select>
+        </label>
+
+        <label>Event Name
+          <input id="eventName" placeholder="Event title (eg: Workshop on Git)" />
+        </label>
+
+        <label>Event Date
+          <input id="eventDate" type="date" />
+        </label>
+
+        <button id="createEventBtn">Create / Save Event</button>
+      </div>
+
+      <div class="row">
+        <label>Open Event
+          <select id="savedEvents"></select>
+        </label>
+        <button id="deleteEventBtn">Delete Selected Event</button>
+      </div>
+    </section>
+
+    <section class="upload card">
+      <h2>Upload Roster (Excel / CSV)</h2>
+      <div class="row">
+        <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" />
+        <button id="loadSampleBtn">Load Sample JSON</button>
+      </div>
+      <p class="hint">Accepted formats: .xlsx, .xls, .csv. The script will try to find common columns (name, stream, year, college, food, paid, member). Extra columns preserved.</p>
+    </section>
+
+    <section class="controls card">
+      <h2>Attendance Controls</h2>
+      <div class="row">
+        <button id="markAllPresent">Mark All Present</button>
+        <button id="markAllAbsent">Mark All Absent</button>
+        <button id="exportExcel">Export Excel (with Present)</button>
+        <button id="exportCSV">Export CSV</button>
+        <button id="exportJSON">Export JSON</button>
+      </div>
+      <div class="counters">
+        <span>Total Registered: <strong id="totalCount">0</strong></span>
+        <span>Present: <strong id="presentCount">0</strong></span>
+        <span>Absent: <strong id="absentCount">0</strong></span>
+      </div>
+    </section>
+
+    <section class="table card">
+      <h2>Roster — click a row to toggle Present / Absent</h2>
+      <div id="tableContainer" class="tableContainer">
+        <!-- populated dynamically -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <small>Built for College Clubs — export attendance for records. Uses local browser storage for events.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
