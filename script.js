@@ -28,7 +28,10 @@ const columnMap = {
   "club member": "Member",
   "name": "Name",
   "full name": "Name",
-  "participant name": "Name"
+  "participant name": "Name",
+  "participant": "Name",
+  "name of participant": "Name",
+  "Full Name (to be printed in certificate)\n": "Name"
 };
 
 function normalizeHeaders(row) {
